@@ -49,10 +49,6 @@ PRODUCT_PACKAGES += \
     init.oem.fingerprint.sh \
     init.oem.fingerprint2.sh
 
-# Lights
-PRODUCT_PACKAGES += \
-    android.hardware.lights-service.sofiar
-
 # NFC
 PRODUCT_PACKAGES += \
     android.hardware.nfc@1.2-service \
