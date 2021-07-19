@@ -9,8 +9,7 @@
 # ---------------------------------
 # April 15, 2019  chengql2@lenovo.com  Initial version
 # April 28, 2019  chengql2  Add fps_id creating step
-# December 2, 2019  chengql2  Store fps_id into persist fs, and identify sensor
-#                             again when secure unit boots as factory mode.
+#
 
 script_name=${0##*/}
 script_name=${script_name%.*}
@@ -18,7 +17,8 @@ function log {
     echo "$script_name: $*" > /dev/kmsg
 }
 
-persist_fps_id=/mnt/vendor/persist/fps/vendor_id
+utag_name_fps_id=fps_id
+utag_fps_id=/proc/config/$utag_name_fps_id
 
 FPS_VENDOR_EGIS=egis
 FPS_VENDOR_FPC=fpc
@@ -38,14 +38,14 @@ function ident_fps {
     do
         sleep 0.1
         ident_status=$(getprop $PROP_FPS_IDENT)
-        log "-result : $ident_status"
+        log "- reuslt: $ident_status"
         if [ $ident_status == $FPS_VENDOR_FPC ]; then
             log "ok"
-            echo $FPS_VENDOR_FPC > $persist_fps_id
+            echo $FPS_VENDOR_FPC > $utag_fps_id/ascii
             return 0
         elif [ $ident_status == $FPS_VENDOR_NONE ]; then
             log "fail"
-            log "- unload FPC driver"
+            log "- remove FPC driver"
             rmmod fpc1020_mmi
             break
         fi
@@ -53,16 +53,20 @@ function ident_fps {
 
     log "- install Egis driver"
     insmod /vendor/lib/modules/ets_fps_mmi.ko
-    echo $FPS_VENDOR_EGIS > $persist_fps_id
+    echo $FPS_VENDOR_EGIS > $utag_fps_id/ascii
     return 0
 }
 
-if [ ! -f $persist_fps_id ]; then
+utag_new=/proc/config/all/new
+
+if [ ! -d $utag_fps_id ]; then
+    log "- create utag: $utag_name_fps_id"
+    echo $utag_name_fps_id > $utag_new
     ident_fps
     return $?
 fi
 
-fps_vendor=$(cat $persist_fps_id)
+fps_vendor=$(cat $utag_fps_id/ascii)
 log "FPS vendor: $fps_vendor"
 
 if [ $fps_vendor == $FPS_VENDOR_EGIS ]; then
