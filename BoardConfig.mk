@@ -14,9 +14,9 @@
 # limitations under the License.
 #
 
--include device/motorola/sm6150-common/BoardConfigCommon.mk
+-include device/motorola/sm6125-common/BoardConfigCommon.mk
 
-DEVICE_PATH := device/motorola/odessa
+DEVICE_PATH := device/motorola/sofiar
 
 # Display
 TARGET_SCREEN_DENSITY := 420
@@ -25,11 +25,10 @@ TARGET_SCREEN_DENSITY := 420
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 
 # Kernel
-TARGET_KERNEL_CONFIG := vendor/odessa_defconfig
+TARGET_KERNEL_CONFIG := vendor/sofiar_defconfig
 
 # Kernel modules - Audio
-TARGET_MODULE_ALIASES += \
-    snd-soc-aw882xx.ko:snd_smartpa_aw882xx.ko
+# TARGET_MODULE_ALIASES += \
 
 # SELinux
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor

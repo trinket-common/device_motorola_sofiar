@@ -25,23 +25,23 @@ $(call inherit-product, device/motorola/odessa/device.mk)
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := lineage_odessa
-PRODUCT_DEVICE := odessa
+PRODUCT_NAME := lineage_sofiar
+PRODUCT_DEVICE := sofiar
 PRODUCT_BRAND := motorola
-PRODUCT_MODEL := moto g(9) plus
+PRODUCT_MODEL := moto g(8) power
 PRODUCT_MANUFACTURER := motorola
 
 PRODUCT_AAPT_CONFIG := xxxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 2400
+TARGET_SCREEN_HEIGHT := 2300
 TARGET_SCREEN_WIDTH := 1080
 
 # Build info
-BUILD_FINGERPRINT := "motorola/odessa_retail/odessa:10/QPAS30.19-Q3-32-50-5/5fc71:user/release-keys"
+BUILD_FINGERPRINT := "motorola/sofiar_retail/sofiar:11/RPE31.Q4U-47-35/0edbf:user/release-keys"
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=odessa_retail \
-    PRIVATE_BUILD_DESC="odessa_retail-user 10 QPAS30.19-Q3-32-50-5 5fc71 release-keys"
+    PRODUCT_NAME=sofiar \
+    PRIVATE_BUILD_DESC="sofiar_retail-user 11 RPE31.Q4U-47-35 0edbf release-keys"
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
