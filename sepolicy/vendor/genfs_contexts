@@ -1,3 +1,0 @@
-# Fingerprint
-genfscon sysfs /devices/platform/egis_input               u:object_r:sysfs_fingerprint:s0
-

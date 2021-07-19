@@ -29,6 +29,3 @@ TARGET_KERNEL_CONFIG := vendor/sofiar_defconfig
 
 # Kernel modules - Audio
 # TARGET_MODULE_ALIASES += \
-
-# SELinux
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
